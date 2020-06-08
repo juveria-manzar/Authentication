@@ -19,3 +19,10 @@ const userSchema = new mongoose.Schema({
     salt: String
 
 })
+
+
+
+
+
+
+mongoose.model('User', userSchema);
