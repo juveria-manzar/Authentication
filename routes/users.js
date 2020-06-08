@@ -34,4 +34,21 @@ router.post('/register', function({ body }, res, next) {
     })
 })
 
+router.post('/login', function({ body }, res) {
+    if (!body.email || body.password) {
+        return res.status(400).json({ message: "All fields are required" })
+    }
+
+    passport.authenticate("local", (err, user, info) => {
+        if (err) {
+            return res.status(404).json(err)
+        }
+        if (user) {
+            return res.status(201).json({ message: "Logged In." })
+        } else {
+            return res.status(401).json(info)
+        }
+    })(req, res)
+})
+
 module.exports = router;
