@@ -34,8 +34,8 @@ router.post('/register', function({ body }, res, next) {
     })
 })
 
-router.post('/login', function({ body }, res) {
-    if (!body.email || body.password) {
+router.post('/login', function(req, res) {
+    if (!req.email || req.password) {
         return res.status(400).json({ message: "All fields are required" })
     }
 
